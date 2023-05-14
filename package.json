@@ -1,0 +1,29 @@
+{
+    "name": "foobubble",
+    "version": "0.0.1",
+    "description": "webrtc description",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/lucaslouca/"
+    },
+    "keywords": [
+        "webrtc",
+        "videochat"
+    ],
+    "author": "lucaslouca",
+    "license": "MIT",
+    "dependencies": {
+        "body-parser": "^1.20.2",
+        "ejs": "~1.0.0",
+        "express": "~3.4.0",
+        "filereader": "^0.10.3",
+        "multer": "^1.4.5-lts.1",
+        "node-static": "~0.7.1",
+        "socket.io": "~0.9.16",
+        "ts-ebml": "^2.0.2"
+    }
+}

@@ -1,0 +1,143 @@
+/*
+*  Copyright (c) 2015 The WebRTC project authors. All Rights Reserved.
+*
+*  Use of this source code is governed by a BSD-style license
+*  that can be found in the LICENSE file in the root of the source
+*  tree.
+*/
+
+// This code is adapted from
+// https://rawgit.com/Miguelao/demos/master/mediarecorder.html
+
+'use strict';
+
+
+/* globals MediaRecorder */
+
+let mediaRecorder;
+let recordedBlobs = [];
+let onAir = false;
+
+const codecPreferences = document.querySelector('#codecPreferences');
+
+const errorMsgElement = document.querySelector('span#errorMsg');
+const recordedVideo = document.getElementById('broadcastedVideo');
+const recordedCanvas = document.getElementById('broadcastedCanvas');
+const recordButton = document.getElementById('record');
+
+
+recordButton.addEventListener('click', () => {
+  if (onAir === false) {
+    startRecording();
+    onAir = true;
+  } else {
+    stopRecording();
+    onAir = false;
+    downloadButton.disabled = false;
+  }
+});
+
+
+const downloadButton = document.querySelector('button#download');
+downloadButton.addEventListener('click', () => {
+
+  const blob = new Blob(recordedBlobs, {type: 'video/webm'});
+  const url = window.URL.createObjectURL(blob);
+  
+          
+  const a = document.createElement('a');
+  a.style.display = 'none';
+  a.href = url;
+  a.download = 'test.webm';
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(() => {
+    document.body.removeChild(a);
+    window.URL.revokeObjectURL(url);
+  }, 100);
+
+
+});
+
+
+
+function handleDataAvailable(event) {
+  console.log('handleDataAvailable', event);
+  if (event.data && event.data.size > 0) {
+    recordedBlobs.push(event.data);
+  }
+}
+
+function startRecording() {
+  /* recordedBlobs = []; */
+  const mimeType = codecPreferences.options[codecPreferences.selectedIndex].value;
+  const options = {mimeType};
+
+  try {
+    const sUsrAg = navigator.userAgent;
+    var stream = null;
+    /*if (sUsrAg.indexOf('Firefox') > -1) {
+      stream = recordedVideo.mozCaptureStream();
+    } else {
+      stream = recordedVideo.captureStream();
+    }
+    mediaRecorder = new MediaRecorder(stream, options); */
+
+    
+    // const audioContext = new AudioContext();
+    // const mediaStreamAudioDestinationNode = new MediaStreamAudioDestinationNode(audioContext);
+    // const mediaRecorder = new MediaRecorder(mediaStreamAudioDestinationNode.stream);
+
+
+
+
+    stream = recordedCanvas.captureStream(24);
+
+    console.log(document.getElementById('localVideo'));
+
+    var audioTrack =  document.getElementById('localVideo').srcObject.getTracks().filter(function(track) {
+        return track.kind === 'audio'
+    })[0];
+    
+    stream.addTrack( audioTrack );
+    
+    mediaRecorder = new MediaRecorder(stream);
+
+
+
+  } catch (e) {
+    console.error('Exception while creating MediaRecorder:', e);
+    errorMsgElement.innerHTML = `Exception while creating MediaRecorder: ${JSON.stringify(e)}`;
+    return;
+  }
+
+  console.log('Created MediaRecorder', mediaRecorder, 'with options', options);
+  recordButton.innerHTML = '<i class="fa fa-square"></i>&nbsp;&nbsp;Stop Recording';
+  downloadButton.disabled = true;
+  codecPreferences.disabled = true;
+  mediaRecorder.onstop = (event) => {
+    console.log('Recorder stopped: ', event);
+    console.log('Recorded Blobs: ', recordedBlobs);
+  };
+  mediaRecorder.ondataavailable = handleDataAvailable;
+  mediaRecorder.start();
+  console.log('MediaRecorder started', mediaRecorder);
+}
+
+function stopRecording() {
+  recordButton.innerHTML = '<i class="fa fa-circle"></i>&nbsp;&nbsp;Start Recording';
+  /* recordButton.textContent = 'Start Recording'; */
+  mediaRecorder.stop();
+}
+
+
+/*
+async function init(constraints) {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia(constraints);
+    handleSuccess(stream);
+  } catch (e) {
+    console.error('navigator.getUserMedia error:', e);
+    errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
+  }
+} */
