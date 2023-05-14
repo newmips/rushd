@@ -1,4 +1,4 @@
-# rushd
+# RUSHD
 RUSHD - Recorded by Users for remote Spectators in High Debit. 
 
 A web application to record with multiple smartphones.
