@@ -69,7 +69,7 @@ function handleDataAvailable(event) {
 }
 
 function startRecording() {
-  /* recordedBlobs = []; */
+  recordedBlobs = [];
   const mimeType = codecPreferences.options[codecPreferences.selectedIndex].value;
   const options = {mimeType};
 
