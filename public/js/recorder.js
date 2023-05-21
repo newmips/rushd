@@ -91,7 +91,7 @@ function startRecording() {
 
 
 
-    stream = recordedCanvas.captureStream(24);
+    stream = recordedCanvas.captureStream(30);
 
     console.log(document.getElementById('localVideo'));
 
@@ -122,12 +122,15 @@ function startRecording() {
   mediaRecorder.ondataavailable = handleDataAvailable;
   mediaRecorder.start();
   console.log('MediaRecorder started', mediaRecorder);
+
 }
 
 function stopRecording() {
   recordButton.innerHTML = '<i class="fa fa-circle"></i>&nbsp;&nbsp;Start Recording';
   /* recordButton.textContent = 'Start Recording'; */
   mediaRecorder.stop();
+
+  document.getElementById('download').setAttribute('enabled', true);
 }
 
 
