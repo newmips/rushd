@@ -38,6 +38,6 @@ function generateRoomUrl() {
 
 	var linkFM = document.getElementById("linkFM");
 	txt = 'You have just been invited to connect to : ';
-	linkFM.href = 'fb-messenger://share/?link=' + $('<div>').text(txt).html()  + roomUrl + '&app_id=672331388004079';
+	linkFM.href = 'fb-messenger://share/?app_id=672331388004079&link=' + $('<div>').text(txt).html()  + roomUrl;
 
 }
