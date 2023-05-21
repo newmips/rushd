@@ -19,11 +19,20 @@
 </head>
 
 <body>
-	<div class="wrapper p-4">
+	<div class="wrapper p-2">
 		
-		<div class="row mt-2">
-			<div class="col-12">
-				<h4><img src="/img/logo_tjwp_degrade.png" width="50" class="p-2" />The Jazz Web Project - Recording Room</h4>
+		<div class="row">
+			<div class="col-3">
+				<h4><img src="/img/logo_tjwp_degrade.png" width="50" class="p-2" />RUSHD</h4>
+			</div>
+			<div class="col-9" style="text-align: center;">
+
+				<a onclick="javascript:document.getElementById('broadcastedVideo').requestFullscreen();" class="btn btn-outline-secondary mt-2"><i class="fa-solid fa-up-right-and-down-left-from-center"></i>&nbsp;&nbsp;Fullscreen</a>
+				<button id="record" class="btn btn-outline-secondary mt-2"><i class="fa-solid fa-circle"></i>&nbsp;&nbsp;Start Recording</button>
+				<button id="download" class="btn btn-outline-secondary mt-2"><i class="fa-solid fa-download"></i>&nbsp;&nbsp;Download</button>
+				<span style="display: none;">
+					Recording format: <select id="codecPreferences" disabled></select>
+				</span>
 			</div>
 		</div>
 
@@ -46,12 +55,6 @@
 			<div class="col-9">
 				<div id="broadcastedVideoWrap">
 					<video class="videoBox" id="broadcastedVideo" autoplay="" playsinline muted></video>
-					<a onclick="javascript:document.getElementById('broadcastedVideo').requestFullscreen();" class="btn btn-outline-secondary mt-2"><i class="fa-solid fa-up-right-and-down-left-from-center"></i>&nbsp;&nbsp;Fullscreen</a>
-					<button id="record" class="btn btn-outline-secondary mt-2"><i class="fa-solid fa-circle"></i>&nbsp;&nbsp;Start Recording</button>
-					<button id="download" class="btn btn-outline-secondary mt-2"><i class="fa-solid fa-download"></i>&nbsp;&nbsp;Download</button>
-					<span style="display: none;">
-						Recording format: <select id="codecPreferences" disabled></select>
-					</span>
 				</div>
 			</div>
 		</div>
