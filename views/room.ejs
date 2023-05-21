@@ -14,6 +14,7 @@
 	<script src="https://kit.fontawesome.com/cc24da0c76.js" crossorigin="anonymous"></script>
 	<link rel="stylesheet" type="text/css" href="/css/room.css" media="screen" />
 	<link rel="icon" href="/img/logo_tjwp_degrade.png">
+	<link rel="manifest" href="manifest.json">
 	<title>The Jazz Web Project - RUSHED - Recording Room</title>
 </head>
 
@@ -48,8 +49,9 @@
 					<a onclick="javascript:document.getElementById('broadcastedVideo').requestFullscreen();" class="btn btn-outline-secondary mt-2"><i class="fa-solid fa-up-right-and-down-left-from-center"></i>&nbsp;&nbsp;Fullscreen</a>
 					<button id="record" class="btn btn-outline-secondary mt-2"><i class="fa-solid fa-circle"></i>&nbsp;&nbsp;Start Recording</button>
 					<button id="download" class="btn btn-outline-secondary mt-2"><i class="fa-solid fa-download"></i>&nbsp;&nbsp;Download</button>
-		
+					<span style="display: none;">
 						Recording format: <select id="codecPreferences" disabled></select>
+					</span>
 				</div>
 			</div>
 		</div>

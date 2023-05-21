@@ -14,6 +14,10 @@ section{
     text-align: center;
 }
 
+#rotation {
+    background-color:#fff;
+    text-align: center;
+}
 
 #room-link {
 	min-height:2em;
@@ -70,5 +74,28 @@ section{
 }
 
 	
+@media (orientation: portrait) {
+	#rotate {
+	  padding-top:2em;
+	  display: block;
+	  margin: 0 auto;
+	  width: 100%;
+	  text-align: center;
+	  font-family:"Myriad Pro",PTSansCaptionRegular, arial, helvetica, sans-serif;
+	}
+	
+	#success {
+		display: none;
+	}
+  }
+
+
+@media (orientation: landscape) {
+	#rotate {
+	  display: none;
+	}
+  }
+
+
 	
 	

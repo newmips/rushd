@@ -31,6 +31,9 @@ $( document ).ready(function() {
 	        //alert(stream.getVideoTracks().length);
 	        // document.querySelector('#localVideo').src = window.URL.createObjectURL(stream);
 			document.querySelector('#localVideo').srcObject = stream;
+			
+			// Select local stream by default
+			selectVideo('localVideo');
 
 	        $("#micMenu").on("click",function callback(e) {
 				toggleMic();
@@ -41,6 +44,7 @@ $( document ).ready(function() {
     		});
 
 			$("#localVideo").prop('muted', true);
+
 	    }
 	);
 	
@@ -58,6 +62,11 @@ $( document ).ready(function() {
     meeting.onChatReady(function() {
 			console.log("Chat is ready");
 	    }
+	);
+
+	meeting.onChatNotReady(function() {
+		console.log("Chat is not yet ready");
+		}
 	);
 	
     var room = window.location.pathname.match(/([^\/]*)\/*$/)[1];
