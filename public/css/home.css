@@ -73,6 +73,17 @@ section{
     color:#9a9a9a;
 }
 
+#qrcode {
+	padding-top:25px;
+	margin: 0 auto;
+}
+
+#qrcode > img {
+
+	margin: 0 auto;
+	width:120px;
+	height:120px;
+}
 	
 @media (orientation: portrait) {
 	#rotate {

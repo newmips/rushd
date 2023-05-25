@@ -98,3 +98,29 @@ video {
     border:none;
     border-radius: 0;
 }
+
+	
+@media (orientation: portrait) {
+	#rotate {
+	  padding-top:2em;
+	  display: block;
+	  margin: 0 auto;
+	  width: 100%;
+	  text-align: center;
+	  font-family:"Myriad Pro",PTSansCaptionRegular, arial, helvetica, sans-serif;
+	}
+	
+	#success {
+		display: none;
+	}
+  }
+
+
+@media (orientation: landscape) {
+	#rotate {
+	  display: none;
+	}
+  }
+
+
+	

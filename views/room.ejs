@@ -21,43 +21,55 @@
 <body>
 	<div class="wrapper p-2">
 		
-		<div class="row">
-			<div class="col-3">
-				<a href="javascript:window.close();" style="text-decoration: none; color: black;"><h4><img src="/img/logo_tjwp_degrade.png" width="50" class="p-2" />RUSHD</h4></a>
-			</div>
-			<div class="col-9" style="text-align: center;">
-
-				<a onclick="javascript:document.getElementById('broadcastedVideo').requestFullscreen();" class="btn btn-outline-secondary mt-2"><i class="fa-solid fa-up-right-and-down-left-from-center"></i>&nbsp;&nbsp;Fullscreen</a>
-				<button id="record" class="btn btn-outline-secondary mt-2"><i class="fa-solid fa-circle"></i>&nbsp;&nbsp;Start Recording</button>
-				<button id="download" class="btn btn-outline-secondary mt-2" disabled><i class="fa-solid fa-download"></i>&nbsp;&nbsp;Download</button>
-				<span style="display: none;">
-					Recording format: <select id="codecPreferences" disabled></select>
-				</span>
-			</div>
+		<div id="rotate">
+			<img src="/img/logo_tjwp_degrade.png" width="50" />
+			<br>
+			<h2>The Jazz Web Project</h2>
+			<p>RUSHD Application</p>
+			<br><br>
+			<section id="rotation" class="mt-4">Please turn your device horizontally<br><img src="/img/rotate.png" width="150"></img>
+			</section>
 		</div>
 
-		<div class="row mt-2">
-			<div class="col-3">
-				<div id="videos">
-					<div id="videosWrapper">
-						<div class="row">
-							<div class="col-12">
-								<div id="localVideoWrap" class='videoWrap'>
-									<video class="videoBox" id="localVideo" autoplay muted playsinline></video>
-									<a onclick="selectVideo('localVideo');" class="btn btn-outline-secondary mt-2"><i class="fa-solid fa-camera"></i>&nbsp;&nbsp;Select</a>
+		<section id="success">
+			<div class="row">
+				<div class="col-3">
+					<a href="javascript:window.close();" style="text-decoration: none; color: black;"><h4><img src="/img/logo_tjwp_degrade.png" width="50" class="p-2" />RUSHD</h4></a>
+				</div>
+				<div class="col-9" style="text-align: center;">
+
+					<a onclick="javascript:document.getElementById('broadcastedVideo').requestFullscreen();" class="btn btn-outline-secondary mt-2"><i class="fa-solid fa-up-right-and-down-left-from-center"></i>&nbsp;&nbsp;Fullscreen</a>
+					<button id="record" class="btn btn-outline-secondary mt-2"><i class="fa-solid fa-circle"></i>&nbsp;&nbsp;Start Recording</button>
+					<button id="download" class="btn btn-outline-secondary mt-2" disabled><i class="fa-solid fa-download"></i>&nbsp;&nbsp;Download</button>
+					<span style="display: none;">
+						Recording format: <select id="codecPreferences" disabled></select>
+					</span>
+				</div>
+			</div>
+
+			<div class="row mt-2">
+				<div class="col-3">
+					<div id="videos">
+						<div id="videosWrapper">
+							<div class="row">
+								<div class="col-12">
+									<div id="localVideoWrap" class='videoWrap'>
+										<video class="videoBox" id="localVideo" autoplay muted playsinline></video>
+										<a onclick="selectVideo('localVideo');" class="btn btn-outline-secondary mt-2"><i class="fa-solid fa-camera"></i>&nbsp;&nbsp;Select</a>
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-				</div>
 
-			</div>
-			<div class="col-9">
-				<div id="broadcastedVideoWrap">
-					<video class="videoBox" id="broadcastedVideo" autoplay="" playsinline muted></video>
+				</div>
+				<div class="col-9">
+					<div id="broadcastedVideoWrap">
+						<video class="videoBox" id="broadcastedVideo" autoplay="" playsinline muted></video>
+					</div>
 				</div>
 			</div>
-		</div>
+		</section>
 	</div>
 	<canvas id="broadcastedCanvas" style="display: none;"></canvas>
 

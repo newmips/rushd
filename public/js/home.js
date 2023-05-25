@@ -35,9 +35,13 @@ function generateRoomUrl() {
 	linkWA.href = 'https://wa.me/?text=' + $('<div>').text(txt).html()  + roomUrl;
 
 
-
+	/*
 	var linkFM = document.getElementById("linkFM");
 	txt = 'You have just been invited to connect to : ';
 	linkFM.href = 'fb-messenger://share/?app_id=672331388004079&link=' + $('<div>').text(txt).html()  + roomUrl;
+	*/
 
+
+	var qrcode = new QRCode("qrcode");
+	qrcode.makeCode(roomUrl);
 }
