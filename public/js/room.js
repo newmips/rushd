@@ -76,7 +76,7 @@ $( document ).ready(function() {
  
 
 function addRemoteVideo(stream, participantID) {
-    var $videoBox = $(`<div class="row mt-4"><div class="col-12"><div class='videoWrap' id='uuid_`+participantID+`'><video onclick="selectVideo('`+participantID+`');" class='videoBox' autoplay muted></video><button onclick="selectVideo('`+participantID+`');" class="btn btn-outline-secondary mt-2"><i class="fa-solid fa-camera"></i></button>&nbsp;&nbsp;<button onclick="selectAudio('`+participantID+`', this);" class="btn btn-outline-secondary mt-2 btn-audio"><i class="fa-solid fa-microphone"></i></button></div></div></div>`);
+    var $videoBox = $(`<div class="row mt-4"><div class="col-12"><div class='videoWrap' id='uuid_`+participantID+`'><video onclick="selectVideo('`+participantID+`');" class="videoBox" autoplay="true" playsinline="true" muted="true"></video><button onclick="selectVideo('`+participantID+`');" class="btn btn-outline-secondary mt-2"><i class="fa-solid fa-camera"></i></button>&nbsp;&nbsp;<button onclick="selectAudio('`+participantID+`', this);" class="btn btn-outline-secondary mt-2 btn-audio"><i class="fa-solid fa-microphone"></i></button></div></div></div>`);
     // var $video = $(``);
     
 	// $video.attr({"src": window.URL.createObjectURL(stream), "autoplay": "autoplay"});
