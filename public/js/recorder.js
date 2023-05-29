@@ -61,6 +61,69 @@ downloadButton.addEventListener('click', () => {
 
 
 
+var startTime;
+function startRecording(stream) {
+  recordedBlobs = [];
+  const mimeType = codecPreferences.options[codecPreferences.selectedIndex].value;
+  const options = {mimeType};
+
+  try {
+    const sUsrAg = navigator.userAgent;
+    var stream = null;
+    
+    // const audioContext = new AudioContext();
+    // const mediaStreamAudioDestinationNode = new MediaStreamAudioDestinationNode(audioContext);
+    // const mediaRecorder = new MediaRecorder(mediaStreamAudioDestinationNode.stream);
+
+    stream = recordedCanvas.captureStream(30);
+
+    console.log(document.getElementById('localVideo'));
+
+    var audioTrack =  document.getElementById('localVideo').srcObject.getTracks().filter(function(track) {
+        return track.kind === 'audio'
+    })[0];
+    
+    stream.addTrack( audioTrack );
+    
+    mediaRecorder = new MediaRecorder(stream);
+
+
+
+  } catch (e) {
+    console.error('Exception while creating MediaRecorder:', e);
+    errorMsgElement.innerHTML = `Exception while creating MediaRecorder: ${JSON.stringify(e)}`;
+    return;
+  }
+  console.log('Created MediaRecorder', mediaRecorder, 'with options', options);
+  recordButton.innerHTML = '<i class="fa fa-square"></i>&nbsp;&nbsp;Stop Recording';
+  downloadButton.disabled = true;
+  codecPreferences.disabled = true;
+  mediaRecorder.onstop = function() {
+      var duration = Date.now() - startTime;
+      var buggyBlob = new Blob(recordedBlobs, { type: 'video/webm' });
+
+      // v1: callback-style
+      console.log(duration);ysFixWebmDuration(buggyBlob, duration, {logger: false})
+      .then(function(fixedBlob) {
+        recordedBlobs = [];
+        recordedBlobs.push(fixedBlob);
+      });
+          
+
+  };
+  mediaRecorder.ondataavailable = function(event) {
+      var data = event.data;
+      if (data && data.size > 0) {
+        recordedBlobs.push(data);
+      }
+  };
+  mediaRecorder.start();
+  startTime = Date.now();
+}
+
+/*
+
+
 function handleDataAvailable(event) {
   console.log('handleDataAvailable', event);
   if (event.data && event.data.size > 0) {
@@ -76,20 +139,10 @@ function startRecording() {
   try {
     const sUsrAg = navigator.userAgent;
     var stream = null;
-    /*if (sUsrAg.indexOf('Firefox') > -1) {
-      stream = recordedVideo.mozCaptureStream();
-    } else {
-      stream = recordedVideo.captureStream();
-    }
-    mediaRecorder = new MediaRecorder(stream, options); */
-
     
     // const audioContext = new AudioContext();
     // const mediaStreamAudioDestinationNode = new MediaStreamAudioDestinationNode(audioContext);
     // const mediaRecorder = new MediaRecorder(mediaStreamAudioDestinationNode.stream);
-
-
-
 
     stream = recordedCanvas.captureStream(30);
 
@@ -124,6 +177,8 @@ function startRecording() {
   console.log('MediaRecorder started', mediaRecorder);
 
 }
+
+*/
 
 function stopRecording() {
   recordButton.innerHTML = '<i class="fa fa-circle"></i>&nbsp;&nbsp;Start Recording';
