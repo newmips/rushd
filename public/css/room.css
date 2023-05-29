@@ -99,6 +99,17 @@ video {
     border-radius: 0;
 }
 
+.btn-audio-active {
+	background-color: #28a745;
+	color: #fff;
+	border-color: #28a475;
+}
+
+.btn-audio-active:hover {
+	background-color: #28a745;
+	color: #fff;
+	border-color: #28a475;
+}
 	
 @media (orientation: portrait) {
 	#rotate {

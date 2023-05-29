@@ -62,7 +62,7 @@ downloadButton.addEventListener('click', () => {
 
 
 var startTime;
-function startRecording(stream) {
+function startRecording() {
   recordedBlobs = [];
   const mimeType = codecPreferences.options[codecPreferences.selectedIndex].value;
   const options = {mimeType};
@@ -77,9 +77,20 @@ function startRecording(stream) {
 
     stream = recordedCanvas.captureStream(30);
 
-    console.log(document.getElementById('localVideo'));
+    let audioId = document.getElementById('selectedAudio').value;
+    let elem = null;
+    console.log(audioId);
+    
+    if (audioId == 'localVideo') {
+      elem = document.getElementById('localVideo');
+    }
+    else {
+      audioId = "uuid_" + audioId;
+      elem = document.getElementById(audioId) ? document.getElementById(audioId).firstChild : document.getElementById('localVideo');
+    }
 
-    var audioTrack =  document.getElementById('localVideo').srcObject.getTracks().filter(function(track) {
+
+    var audioTrack =  elem.srcObject.getTracks().filter(function(track) {
         return track.kind === 'audio'
     })[0];
     
@@ -94,11 +105,18 @@ function startRecording(stream) {
     errorMsgElement.innerHTML = `Exception while creating MediaRecorder: ${JSON.stringify(e)}`;
     return;
   }
+  
   console.log('Created MediaRecorder', mediaRecorder, 'with options', options);
   recordButton.innerHTML = '<i class="fa fa-square"></i>&nbsp;&nbsp;Stop Recording';
   downloadButton.disabled = true;
   codecPreferences.disabled = true;
+  $('.btn-audio').prop('disabled', true);
+
   mediaRecorder.onstop = function() {
+
+      downloadButton.disabled = false;
+      $('.btn-audio').prop('disabled', false);
+
       var duration = Date.now() - startTime;
       var buggyBlob = new Blob(recordedBlobs, { type: 'video/webm' });
 

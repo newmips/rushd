@@ -126,6 +126,43 @@ var Meeting = function (socketioHost) {
 		}
 	}
     
+
+    function selectAudio(id, elem) {
+
+        /*let elem = null;
+        if (id == 'localVideo') {
+            elem = document.querySelector("#" + id);
+        }
+        else {
+            elem = document.querySelector("#uuid_" + id).firstChild;
+        }
+
+        var audioTrack =  elem.srcObject.getTracks().filter(function(track) {
+            return track.kind === 'audio'
+        })[0];
+        
+
+        let stream = document.querySelector('#broadcastedVideo').srcObject;
+        console.log(stream.getAudioTracks());
+
+        stream.removeTrack(stream.getAudioTracks()[0]);
+        console.log("Audio track removed");
+        console.log(stream.getAudioTracks());
+
+        stream.addTrack( audioTrack );
+        console.log("Audio track added");
+        console.log(stream.getAudioTracks());
+
+        document.querySelector('#broadcastedVideo').srcObject = stream; */
+
+        document.getElementById('selectedAudio').value = id;
+
+        console.log(elem);
+
+        $('.btn-audio').removeClass('btn-audio-active');
+        elem.classList.add('btn-audio-active');
+    }
+
     function selectVideo(id) {
 
         let elem = null;
@@ -719,6 +756,7 @@ var Meeting = function (socketioHost) {
     exports.countParticipants    =      countParticipants;
     exports.toggleMic 			= 		toggleMic;
     exports.selectVideo			= 		selectVideo;
+    exports.selectAudio         =       selectAudio;
     exports.toggleVideo			= 		toggleVideo;
     exports.onLocalVideo        =       onLocalVideo;
     exports.onRemoteVideo       =       onRemoteVideo;
