@@ -449,16 +449,16 @@ var Meeting = function (socketioHost) {
         // _opc[participantId].onaddstream = handleRemoteStreamAdded(participantId);
         // _opc[participantId].ontrack = handleRemoteStreamAdded(participantId);
 
-        if (_opc[participantId].addTrack !== undefined) {
+        if (_opc[participantId].addStream !== undefined) {
+            _opc[participantId].onremovestream = handleRemoteStreamRemoved; 
+            _opc[participantId].onaddstream = handleRemoteStreamAdded(participantId);
+            _opc[participantId].addStream(_localStream);
+        } else {
             _opc[participantId].onremovetrack = handleRemoteStreamRemoved; 
             _opc[participantId].ontrack = handleRemoteStreamAdded(participantId);
             _localStream.getTracks().forEach((track) => {
                 _opc[participantId].addTrack(track, _localStream);
             });
-        } else {
-            _opc[participantId].onremovestream = handleRemoteStreamRemoved; 
-            _opc[participantId].onaddstream = handleRemoteStreamAdded(participantId);
-            _opc[participantId].addStream(_localStream);
         }
 
         
@@ -498,16 +498,16 @@ var Meeting = function (socketioHost) {
         
         // _apc[to].onaddstream = handleRemoteStreamAdded(to);
         // _apc[to].ontrack = handleRemoteStreamAdded(to);
-        if (_apc[to].addTrack !== undefined) {
+        if (_apc[to].addStream !== undefined) {
+            _apc[to].onaddstream = handleRemoteStreamAdded(to);
+            _apc[to].onremovestream = handleRemoteStreamRemoved;
+            _apc[to].addStream(_localStream);
+        } else {
             _apc[to].ontrack = handleRemoteStreamAdded(to);
             _apc[to].onremovetrack = handleRemoteStreamRemoved; 
             _localStream.getTracks().forEach((track) => {
                 _apc[to].addTrack(track, _localStream);
             });
-        } else {
-            _apc[to].onaddstream = handleRemoteStreamAdded(to);
-            _apc[to].onremovestream = handleRemoteStreamRemoved;
-            _apc[to].addStream(_localStream);
         }
           
         
