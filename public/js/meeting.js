@@ -153,7 +153,7 @@ var Meeting = function (socketioHost) {
         } else if (elem.mozCaptureStream) {
             stream = elem.mozCaptureStream(fps);
         } else {
-            console.error('Stream capture is not supported');
+            // console.error('Stream capture is not supported');
             // stream = null;
 
             const canvas = document.createElement('canvas');
