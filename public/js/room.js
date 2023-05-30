@@ -39,6 +39,9 @@ $( document ).ready(function() {
 	// CREATE MEETING
 	/////////////////////////////////
 	meeting = new Meeting(host);
+
+	console.log(host);
+	console.log(meeting);
 	
 	meeting.onLocalVideo(function(stream) {
 	        //alert(stream.getVideoTracks().length);
