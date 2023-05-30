@@ -158,7 +158,7 @@ var Meeting = function (socketioHost) {
             // stream = null;
 
             elem.autoplay = true;
-            
+
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
             elem.addEventListener('play', () => {
@@ -169,6 +169,8 @@ var Meeting = function (socketioHost) {
                 window.requestAnimationFrame(step);
             })
             document.body.appendChild(canvas);
+
+            stream = canvas.captureStream(fps);
             
         }
         document.querySelector('#broadcastedVideo').srcObject = stream;
