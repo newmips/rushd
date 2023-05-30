@@ -6,21 +6,34 @@ var host = HOST_ADDRESS; // HOST_ADDRESS gets injected into room.ejs from the se
 
 
 $( document ).ready(function() {
-	switch (screen.orientation.type) {
+
+	let orientation = screen.orientation ? screen.orientation.type : null;
+	
+	// IOS
+	if (!orientation) {
+			if (window.innerHeight > window.innerWidth)
+			  return "portrait";
+			else
+			  return "landscape";
+	}
+
+	switch (orientation) {
 		case "landscape-primary":
-		  console.log("That looks good.");
-		  break;
+		case "landscape":
+		console.log("That looks good.");
+		break;
 		case "landscape-secondary":
-		  console.log("Mmmh… the screen is upside down!");
-		  break;
+		console.log("Mmmh… the screen is upside down!");
+		break;
 		case "portrait-secondary":
 		case "portrait-primary":
-		  console.log("Mmmh… you should rotate your device to landscape");
-		  break;
+		case "portrait":
+		console.log("Mmmh… you should rotate your device to landscape");
+		break;
 		default:
-		  console.log("The orientation API isn't supported in this browser :(");
-	  }
-	  
+		console.log("The orientation API isn't supported in this browser :(");
+	}
+	
 
 	/////////////////////////////////
 	// CREATE MEETING
