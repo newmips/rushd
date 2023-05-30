@@ -499,7 +499,7 @@ var Meeting = function (socketioHost) {
         // _apc[to].onaddstream = handleRemoteStreamAdded(to);
         // _apc[to].ontrack = handleRemoteStreamAdded(to);
         if (_apc[to].addTrack !== undefined) {
-            _apc[to].ontrack = handleRemoteStreamAdded(participantId);
+            _apc[to].ontrack = handleRemoteStreamAdded(to);
             _apc[to].onremovetrack = handleRemoteStreamRemoved; 
             _localStream.getTracks().forEach((track) => {
                 _apc[to].addTrack(track, _localStream);
