@@ -7,16 +7,18 @@ var host = HOST_ADDRESS; // HOST_ADDRESS gets injected into room.ejs from the se
 
 $( document ).ready(function() {
 
-	let orientation = screen.orientation ? screen.orientation.type : null;
+	let orientation = screen.orientation ? screen.orientation.type : "";
 	
 	console.log(orientation);
 
 	// IOS
-	if (orientation == null) {
-			if (window.innerHeight > window.innerWidth)
-			  return "portrait";
-			else
-			  return "landscape";
+	if (orientation === "") {
+			
+		console.log(window.innerHeight);
+		if (window.innerHeight > window.innerWidth)
+			return "portrait";
+		else
+			return "landscape";
 	}
 
 	console.log(orientation);
