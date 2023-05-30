@@ -12,7 +12,7 @@ $( document ).ready(function() {
 	console.log(orientation);
 
 	// IOS
-	if (!orientation) {
+	if (orientation == null) {
 			if (window.innerHeight > window.innerWidth)
 			  return "portrait";
 			else
@@ -20,7 +20,7 @@ $( document ).ready(function() {
 	}
 
 	console.log(orientation);
-	
+
 	switch (orientation) {
 		case "landscape-primary":
 		case "landscape":
