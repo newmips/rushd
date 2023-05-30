@@ -7,7 +7,8 @@ var Meeting = function (socketioHost) {
     var _localStream;
     var _remoteStream;
     var _turnReady;
-    var _pcConfig = {'iceServers': [{'url': 'stun:stun.l.google.com:19302'}]};
+    // var _pcConfig = {'iceServers': [{'url': 'stun:stun.l.google.com:19302'}]};
+    var _pcConfig = {'iceServers': [{'urls': 'stun:stun.l.google.com:19302'}]};
     /*var _pcConfig = {'iceServers': [{'url': 'stun:stun.l.google.com:19302'},
 				{
 				  'urls': 'turn:192.168.1.21:3478?transport=udp',
