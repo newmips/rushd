@@ -451,15 +451,17 @@ var Meeting = function (socketioHost) {
 
         if (_opc[participantId].addTrack !== undefined) {
             _opc[participantId].ontrack = handleRemoteStreamAdded(participantId);
+            _localStream.getTracks().forEach((track) => {
+                _opc[participantId].addTrack(track, _localStream);
+            });
+            _opc[participantId].onremovetrack = handleRemoteStreamRemoved; 
         } else {
             _opc[participantId].onaddstream = handleRemoteStreamAdded(participantId);
+            _opc[participantId].addStream(_localStream);
+            _opc[participantId].onremovestream = handleRemoteStreamRemoved; 
         }
 
-        _opc[participantId].onremovestream = handleRemoteStreamRemoved; 
-        // _opc[participantId].addStream(_localStream);
-        _localStream.getTracks().forEach((track) => {
-            _opc[participantId].addTrack(track, _localStream);
-        });
+        
 
 		try {
 			// Reliable Data Channels not yet supported in Chrome
@@ -497,17 +499,21 @@ var Meeting = function (socketioHost) {
         // _apc[to].onaddstream = handleRemoteStreamAdded(to);
         // _apc[to].ontrack = handleRemoteStreamAdded(to);
         if (_apc[to].addTrack !== undefined) {
-            _apc[to].ontrack = handleRemoteStreamAdded(to);
+            _apc[to].ontrack = handleRemoteStreamAdded(participantId);
+            _localStream.getTracks().forEach((track) => {
+                _apc[to].addTrack(track, _localStream);
+            });
+            _apc[to].onremovetrack = handleRemoteStreamRemoved; 
         } else {
             _apc[to].onaddstream = handleRemoteStreamAdded(to);
+            _apc[to].addStream(_localStream);
+            _apc[to].onremovestream = handleRemoteStreamRemoved;
         }
           
-        _apc[to].onremovestream = handleRemoteStreamRemoved;
+        
 
         // _apc[to].addStream(_localStream);
-        _localStream.getTracks().forEach((track) => {
-            _apc[to].addTrack(track, _localStream);
-        });
+        
 
         _apc[to].setRemoteDescription(new RTCSessionDescription(sdp.snDescription), setRemoteDescriptionSuccess, setRemoteDescriptionError);
 
