@@ -471,7 +471,12 @@ var Meeting = function (socketioHost) {
         _apc[to].onicecandidate = handleIceCandidateAnswerWrapper(cnl, to);
         _apc[to].onaddstream = handleRemoteStreamAdded(to);
         _apc[to].onremovestream = handleRemoteStreamRemoved;
-        _apc[to].addStream(_localStream);
+        
+        // _apc[to].addStream(_localStream);
+        _localStream.getTracks().forEach((track) => {
+            _apc[to].addTrack(track, _localStream);
+        });
+
         _apc[to].setRemoteDescription(new RTCSessionDescription(sdp.snDescription), setRemoteDescriptionSuccess, setRemoteDescriptionError);
 
 		_apc[to].ondatachannel = gotReceiveChannel(to);
