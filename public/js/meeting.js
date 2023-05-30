@@ -154,7 +154,20 @@ var Meeting = function (socketioHost) {
             stream = elem.mozCaptureStream(fps);
         } else {
             console.error('Stream capture is not supported');
-            stream = null;
+            // stream = null;
+
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            video.addEventListener('play', () => {
+                function step() {
+                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                window.requestAnimationFrame(step);
+                }
+                window.requestAnimationFrame(step);
+            })
+            document.body.appendChild(canvas);
+            stream = canvas.captureStream(fps);
+            
         }
         document.querySelector('#broadcastedVideo').srcObject = stream;
         handleSuccess(stream);
