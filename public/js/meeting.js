@@ -156,10 +156,16 @@ var Meeting = function (socketioHost) {
         } else {
             // console.error('Stream capture is not supported');
             // stream = null;
-            const recordedCanvas = document.getElementById('broadcastedCanvas');
-            const context = recordedCanvas.getContext('2d');
-            context.drawImage(elem, 0, 0, recordedCanvas.width, recordedCanvas.height);
-            stream = recordedCanvas.captureStream(fps);
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            elem.addEventListener('play', () => {
+                function step() {
+                ctx.drawImage(elem, 0, 0, canvas.width, canvas.height);
+                window.requestAnimationFrame(step);
+                }
+                window.requestAnimationFrame(step);
+            })
+            document.body.appendChild(canvas);
             
         }
         document.querySelector('#broadcastedVideo').srcObject = stream;
