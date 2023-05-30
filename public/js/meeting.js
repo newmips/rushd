@@ -155,7 +155,7 @@ var Meeting = function (socketioHost) {
         } else {
             // console.error('Stream capture is not supported');
             // stream = null;
-            const recordedCanvas = document.getElementById('recordedCanvas');
+            const recordedCanvas = document.getElementById('broadcastedCanvas');
             const context = recordedCanvas.getContext('2d');
             context.drawImage(elem, 0, 0, recordedCanvas.width, recordedCanvas.height);
             stream = recordedCanvas.captureStream(fps);
