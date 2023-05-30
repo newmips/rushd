@@ -9,6 +9,8 @@ $( document ).ready(function() {
 
 	let orientation = screen.orientation ? screen.orientation.type : null;
 	
+	console.log(orientation);
+
 	// IOS
 	if (!orientation) {
 			if (window.innerHeight > window.innerWidth)
@@ -17,6 +19,8 @@ $( document ).ready(function() {
 			  return "landscape";
 	}
 
+	console.log(orientation);
+	
 	switch (orientation) {
 		case "landscape-primary":
 		case "landscape":
