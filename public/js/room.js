@@ -117,19 +117,15 @@ function addRemoteVideo(stream, participantID) {
 	// $('#'+participantID +" video" ).css("background-color", "red");
 	// $('#'+participantID +" video" ).attr('src', stream);
 	
-	if (document.getElementById('#uuid_'+participantID)) {
-		console.log('this record does not exist');
-	} else {
-	  console.log('this record does not exist');
-	}
 	
 	// while(document.getElementById('#'+participantID) == null) {
 		// console.log('waiting.............');
 	// }
 	
-	var v=document.getElementById("uuid_" + participantID).querySelectorAll(".videoBox")
+	var v=document.getElementById("uuid_" + participantID).querySelectorAll(".videoBox");
+	console.log(v);
 	if(v.length>0){
-	v[0].srcObject = stream;
+		v[0].srcObject = stream;
 	}
 	// window.document.querySelector('#'+participantID +" video").srcObject = stream;
 	// window.document.querySelector('#'+participantID +" video").
