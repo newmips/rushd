@@ -446,7 +446,7 @@ var Meeting = function (socketioHost) {
         _opc[participantId] = new RTCPeerConnection(_pcConfig);
         _opc[participantId].onicecandidate = handleIceCandidateAnswerWrapper(_offerChannels[participantId], participantId);
         // _opc[participantId].onaddstream = handleRemoteStreamAdded(participantId);
-        _opc[participantId].onaddtrack = handleRemoteStreamAdded(participantId);
+        _opc[participantId].ontrack = handleRemoteStreamAdded(participantId);
 
         _opc[participantId].onremovestream = handleRemoteStreamRemoved; 
         // _opc[participantId].addStream(_localStream);
@@ -488,7 +488,7 @@ var Meeting = function (socketioHost) {
         _apc[to].onicecandidate = handleIceCandidateAnswerWrapper(cnl, to);
         
         // _apc[to].onaddstream = handleRemoteStreamAdded(to);
-        _apc[to].onaddtrack = handleRemoteStreamAdded(to);
+        _apc[to].ontrack = handleRemoteStreamAdded(to);
 
         _apc[to].onremovestream = handleRemoteStreamRemoved;
 
