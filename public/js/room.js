@@ -16,9 +16,9 @@ $( document ).ready(function() {
 			
 		console.log(window.innerHeight);
 		if (window.innerHeight > window.innerWidth)
-			return "portrait";
+			orientation = "portrait";
 		else
-			return "landscape";
+			orientation = "landscape";
 	}
 
 	console.log(orientation);
