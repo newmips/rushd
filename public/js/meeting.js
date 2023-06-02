@@ -192,8 +192,7 @@ var Meeting = function (socketioHost) {
             gumVideo.srcObject = stream; 
         } catch (error) { 
             gumVideo.src = URL.createObjectURL(stream); 
-        } 
-        gumVideo.play();
+        }
       
         getSupportedMimeTypes().forEach(mimeType => {
       
