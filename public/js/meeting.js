@@ -191,7 +191,9 @@ var Meeting = function (socketioHost) {
             if (isSafari) throw ""; 
             gumVideo.srcObject = stream; 
         } catch (error) { 
+            console.log('Safari');
             gumVideo.tracks = stream.getTracks();
+            gumVideo.onplay();
         }
       
         getSupportedMimeTypes().forEach(mimeType => {
