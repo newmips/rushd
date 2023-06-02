@@ -134,7 +134,7 @@ $( document ).ready(function() {
 		v[0].playinline = true;
 
 		if (event.type == "track") {
-			v[0].addTrack(track);
+			v[0].addTrack(event.track);
 		}
 		else {
 			v[0].srcObject = event.stream;
