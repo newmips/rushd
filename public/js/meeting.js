@@ -464,17 +464,24 @@ var Meeting = function (socketioHost) {
         // _opc[participantId].ontrack = handleRemoteStreamAdded(participantId);
 
         if (_opc[participantId].addStream !== undefined) {
+
+            console.log("createOffer > _localStream" + _localStream);
+
+            
             _opc[participantId].onremovestream = handleRemoteStreamRemoved; 
             _opc[participantId].onaddstream = handleRemoteStreamAdded(participantId);
             _opc[participantId].addStream(_localStream);
 
-            console.log("createOffer > _localStream" + _localStream);
+            
 
         } else {
+
+            console.log("_localStream" + _localStream);
+
             _opc[participantId].onremovetrack = handleRemoteStreamRemoved; 
             _opc[participantId].ontrack = handleRemoteStreamAdded(participantId);
 
-            console.log("_localStream" + _localStream);
+
             _localStream.getTracks().forEach((track) => {
                 _opc[participantId].addTrack(track, _localStream);
             });
