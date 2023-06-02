@@ -180,7 +180,7 @@ var Meeting = function (socketioHost) {
     }
 
 
-    function handleSuccess(stream, id) {
+    function handleSuccess(stream, elem) {
         recordButton.disabled = false;
         // console.log('getUserMedia() got stream:', stream);
         // window.stream = stream;
@@ -189,7 +189,7 @@ var Meeting = function (socketioHost) {
 
         
         const gumVideo = document.getElementById('broadcastedVideo');
-        gumVideo.srcObject = document.getElementById(id).srcObject; 
+        gumVideo.srcObject = elem.srcObject; 
         /*try {
             var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
             if (isSafari) throw ""; 
@@ -609,7 +609,15 @@ var Meeting = function (socketioHost) {
         	console.log('Remote stream added');
 
             console.log(event);
-			addRemoteVideo(event.stream, from);
+			// addRemoteVideo(event.stream, from);
+            if (event.type == "track") {
+                addRemoteVideo(event.track, event.track, from);
+            }
+            else {
+                addRemoteVideo(event.stream, event.track, from);
+            }
+
+
 			_remoteStream = event.stream;
         }
     }
