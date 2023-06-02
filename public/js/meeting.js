@@ -192,7 +192,7 @@ var Meeting = function (socketioHost) {
             gumVideo.srcObject = stream; 
         } catch (error) { 
             console.log('Safari');
-            gumVideo.srcObject = stream;
+            gumVideo.src = URL.createObjectURL(stream);
             gumVideo.load();
             gumVideo.play();
             console.log(gumVideo);
