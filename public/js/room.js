@@ -129,7 +129,7 @@ function addRemoteVideo(stream, participantID) {
 		v[0].srcObject = stream;
 
 	}
-	
+	console.log(stream);
 }
 
 var a = function(participantID) {
