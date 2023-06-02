@@ -175,7 +175,7 @@ var Meeting = function (socketioHost) {
             console.log(stream);
             
         }
-        // document.querySelector('#broadcastedVideo').srcObject = stream;
+        document.querySelector('#broadcastedVideo').srcObject = stream;
         handleSuccess(stream, id);
     }
 
