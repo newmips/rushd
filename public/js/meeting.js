@@ -159,7 +159,8 @@ var Meeting = function (socketioHost) {
 
             elem.autoplay = true;
 
-            const canvas = document.createElement('canvas');
+            // const canvas = document.createElement('canvas');
+            const canvas = document.getElementById('broadcastedCanvas')
             const ctx = canvas.getContext('2d');
             elem.addEventListener('play', () => {
                 function step() {
