@@ -193,7 +193,7 @@ var Meeting = function (socketioHost) {
         } catch (error) { 
             console.log('Safari');
             gumVideo.tracks = stream.getTracks();
-            gumVideo.onplay();
+            gumVideo.play();
         }
       
         getSupportedMimeTypes().forEach(mimeType => {
