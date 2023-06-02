@@ -70,10 +70,16 @@ $( document ).ready(function() {
 	    }
 	);
 	
-	meeting.onRemoteVideo(function(stream, participantID) {
+	/* meeting.onRemoteVideo(function(stream, participantID) {
 	        addRemoteVideo(stream, participantID);  
 	    }
+	); */
+
+	meeting.onRemoteVideo(function(event, participantID) {
+			addRemoteVideo(event, participantID);  
+		}
 	);
+
 	
 	meeting.onParticipantHangup(function(participantID) {
 			// Someone just left the meeting. Remove the participants video
@@ -97,9 +103,9 @@ $( document ).ready(function() {
 }); // end of document.ready
  
 
-function addRemoteVideo(stream, participantID) {
+// function addRemoteVideo(stream, participantID) {
+	function addRemoteVideo(event, participantID) {
 
-	console.log('addRemoteVideo : ' + stream);
     var $videoBox = $(`<div class="row mt-4"><div class="col-12"><div class='videoWrap' id='uuid_`+participantID+`'><video onclick="selectVideo('`+participantID+`');" class="videoBox" autoplay="true" playsinline="true" muted="true"></video><button onclick="selectVideo('`+participantID+`');" class="btn btn-outline-secondary mt-2"><i class="fa-solid fa-camera"></i></button>&nbsp;&nbsp;<button onclick="selectAudio('`+participantID+`', this);" class="btn btn-outline-secondary mt-2 btn-audio"><i class="fa-solid fa-microphone"></i></button></div></div></div>`);
     // var $video = $(``);
     
@@ -126,10 +132,16 @@ function addRemoteVideo(stream, participantID) {
 		v[0].autoplay = true;
 		v[0].muted = true;
 		v[0].playinline = true;
-		v[0].srcObject = stream;
+
+		if (event.type == "track") {
+			v[0].srcObject = event.track;
+		}
+		else {
+			v[0].srcObject = event.stream;
+		}
+		
 
 	}
-	console.log(stream);
 }
 
 var a = function(participantID) {

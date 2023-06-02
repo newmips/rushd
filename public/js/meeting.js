@@ -175,31 +175,16 @@ var Meeting = function (socketioHost) {
             console.log(stream);
             
         }
-        // document.querySelector('#broadcastedVideo').srcObject = stream;
+
         handleSuccess(elem);
     }
 
 
     function handleSuccess(elem) {
         recordButton.disabled = false;
-        // console.log('getUserMedia() got stream:', stream);
-        // window.stream = stream;
-        
-        
-
         
         const gumVideo = document.getElementById('broadcastedVideo');
-        gumVideo.srcObject = elem.srcObject; 
-        /*try {
-            var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-            if (isSafari) throw ""; 
-            gumVideo.srcObject = stream; 
-        } catch (error) { 
-            console.log('Safari');
-            stream = document.getElementById('localVideo').srcObject;
-            gumVideo.srcObject = stream;
-            console.log(gumVideo);
-        } */
+        gumVideo.srcObject = elem.srcObject;
       
         getSupportedMimeTypes().forEach(mimeType => {
       
@@ -408,10 +393,15 @@ var Meeting = function (socketioHost) {
 	 * Call the registered _onRemoteVideoCallback
 	 *
 	 */
-    function addRemoteVideo(stream, from) {
+   0/*  function addRemoteVideo(stream, from) {
         // call the callback
         _onRemoteVideoCallback(stream, from);
-    }
+    } */
+    function addRemoteVideo(event, from) {
+        // call the callback
+        _onRemoteVideoCallback(event, from);
+    } 
+
 
     function countParticipants() {
         return counterParticipants;
@@ -610,12 +600,7 @@ var Meeting = function (socketioHost) {
 
             console.log(event);
 			// addRemoteVideo(event.stream, from);
-            if (event.type == "track") {
-                addRemoteVideo(event.track, event.track, from);
-            }
-            else {
-                addRemoteVideo(event.stream, event.track, from);
-            }
+            addRemoteVideo(event, from);
 
 
 			_remoteStream = event.stream;
