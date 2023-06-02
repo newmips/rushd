@@ -175,7 +175,7 @@ var Meeting = function (socketioHost) {
             console.log(stream);
             
         }
-        document.querySelector('#broadcastedVideo').srcObject = stream;
+        // document.querySelector('#broadcastedVideo').srcObject = stream;
         handleSuccess(stream);
     }
 
@@ -187,6 +187,7 @@ var Meeting = function (socketioHost) {
       
         const gumVideo = document.getElementById('broadcastedVideo');
         gumVideo.srcObject = stream;
+        gumVideo.play();
       
         getSupportedMimeTypes().forEach(mimeType => {
       
