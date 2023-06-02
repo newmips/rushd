@@ -120,20 +120,12 @@ function addRemoteVideo(stream, participantID) {
 	// $('#'+participantID +" video" ).attr('src', stream);
 	
 	
-	// while(document.getElementById('#'+participantID) == null) {
-		// console.log('waiting.............');
-	// }
 	
 	var v=document.getElementById("uuid_" + participantID).querySelectorAll(".videoBox");
-	console.log(v);
 	if(v.length>0){
-		console.log(stream);
 		v[0].srcObject = stream;
-		v[0].play();
 	}
-	// window.document.querySelector('#'+participantID +" video").srcObject = stream;
-	// window.document.querySelector('#'+participantID +" video").
-	// a(participantID).then(b.bind(participantID,stream));
+	
 }
 
 var a = function(participantID) {
