@@ -127,7 +127,9 @@ function addRemoteVideo(stream, participantID) {
 	var v=document.getElementById("uuid_" + participantID).querySelectorAll(".videoBox");
 	console.log(v);
 	if(v.length>0){
+		console.log(stream);
 		v[0].srcObject = stream;
+		v[0].play();
 	}
 	// window.document.querySelector('#'+participantID +" video").srcObject = stream;
 	// window.document.querySelector('#'+participantID +" video").
