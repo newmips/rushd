@@ -135,7 +135,7 @@ $( document ).ready(function() {
 
 		if (event.type == "track") {
 			// v[0].srcObject = new MediaStream(new Array(event.track));
-			v[0].srcObject = new MediaStream(event.streams);
+			v[0].srcObject = event.streams[0];
 		}
 		else {
 			v[0].srcObject = event.stream;
