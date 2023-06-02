@@ -175,12 +175,12 @@ var Meeting = function (socketioHost) {
             console.log(stream);
             
         }
-        document.querySelector('#broadcastedVideo').srcObject = stream;
-        handleSuccess(stream, id);
+        // document.querySelector('#broadcastedVideo').srcObject = stream;
+        handleSuccess(elem);
     }
 
 
-    function handleSuccess(stream, elem) {
+    function handleSuccess(elem) {
         recordButton.disabled = false;
         // console.log('getUserMedia() got stream:', stream);
         // window.stream = stream;
