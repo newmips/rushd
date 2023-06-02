@@ -176,17 +176,21 @@ var Meeting = function (socketioHost) {
             
         }
         // document.querySelector('#broadcastedVideo').srcObject = stream;
-        handleSuccess(stream);
+        handleSuccess(stream, id);
     }
 
 
-    function handleSuccess(stream) {
+    function handleSuccess(stream, id) {
         recordButton.disabled = false;
-        console.log('getUserMedia() got stream:', stream);
-        window.stream = stream;
-      
+        // console.log('getUserMedia() got stream:', stream);
+        // window.stream = stream;
+        
+        
+
+        
         const gumVideo = document.getElementById('broadcastedVideo');
-        try {
+        gumVideo.srcObject = document.getElementById(id).srcObject; 
+        /*try {
             var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
             if (isSafari) throw ""; 
             gumVideo.srcObject = stream; 
@@ -195,7 +199,7 @@ var Meeting = function (socketioHost) {
             stream = document.getElementById('localVideo').srcObject;
             gumVideo.srcObject = stream;
             console.log(gumVideo);
-        }
+        } */
       
         getSupportedMimeTypes().forEach(mimeType => {
       
