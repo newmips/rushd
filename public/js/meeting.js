@@ -186,7 +186,13 @@ var Meeting = function (socketioHost) {
         window.stream = stream;
       
         const gumVideo = document.getElementById('broadcastedVideo');
-        gumVideo.srcObject = stream;
+        
+        try { 
+            if (navigator.userAgent == 'safari') throw ""; 
+            gumVideo.srcObject = stream; 
+        } catch (error) { 
+            gumVideo.src = URL.createObjectURL(data); 
+        } 
         gumVideo.play();
       
         getSupportedMimeTypes().forEach(mimeType => {
