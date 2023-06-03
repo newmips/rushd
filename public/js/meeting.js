@@ -453,7 +453,7 @@ var Meeting = function (socketioHost) {
         // _opc[participantId].onaddstream = handleRemoteStreamAdded(participantId);
         // _opc[participantId].ontrack = handleRemoteStreamAdded(participantId);
 
-        if (_opc[participantId].addStream !== undefined) {
+        /*if (_opc[participantId].addStream !== undefined) {
 
             console.log("createOffer > Stream > _localStream" + _localStream);
 
@@ -464,7 +464,7 @@ var Meeting = function (socketioHost) {
 
             
 
-        } else {
+        } else { */
 
             console.log("createOffer > Tracks > _localStream" + _localStream);
 
@@ -475,7 +475,7 @@ var Meeting = function (socketioHost) {
             _localStream.getTracks().forEach((track) => {
                 _opc[participantId].addTrack(track, _localStream);
             });
-        }
+        // }
 
         
 
