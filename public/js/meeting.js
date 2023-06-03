@@ -156,7 +156,6 @@ var Meeting = function (socketioHost) {
         } else {
             // console.error('Stream capture is not supported');
             // stream = null;
-            elem.play();
             
             elem.autoplay = true;
 
