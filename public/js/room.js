@@ -132,27 +132,7 @@ $( document ).ready(function() {
 		v[0].autoplay = true;
 		v[0].muted = true;
 		v[0].playinline = true;
-
-		if (event.type == "track") {
-			console.log('addRemoteVideo as track : ' + event.streams[0]);
-			v[0].srcObject = event.streams[0];
-			var AppleHack = v[0].play();
-
-			if (AppleHack !== undefined){
-
-				AppleHack.catch(function(error){
-					console.log('Click video to play');
-				}).then(function(){
-				// If you want to do something every time it starts playing
-					v[0].addEventListener("click", v[0].play(), true);
-				}); 
-			}
-		}
-		else {
-			v[0].srcObject = event.stream;
-		}
-		
-
+		v[0].srcObject = event.streams[0];
 	}
 }
 
