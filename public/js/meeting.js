@@ -514,14 +514,14 @@ var Meeting = function (socketioHost) {
         
         // _apc[to].onaddstream = handleRemoteStreamAdded(to);
         // _apc[to].ontrack = handleRemoteStreamAdded(to);
-        if (_apc[to].addStream !== undefined) {
+        /*if (_apc[to].addStream !== undefined) {
 
             console.log("createAnswer > Stream > _localStream" + _localStream);
 
             _apc[to].onaddstream = handleRemoteStreamAdded(to);
             _apc[to].onremovestream = handleRemoteStreamRemoved;
             _apc[to].addStream(_localStream);
-        } else {
+        } else { */
 
             console.log("createAnswer > Tracks > _localStream" + _localStream);
 
@@ -530,7 +530,7 @@ var Meeting = function (socketioHost) {
             _localStream.getTracks().forEach((track) => {
                 _apc[to].addTrack(track, _localStream);
             });
-        }
+        // }
           
         
 
