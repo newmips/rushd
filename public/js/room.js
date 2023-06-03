@@ -134,7 +134,7 @@ $( document ).ready(function() {
 		v[0].playinline = true;
 
 		if (event.type == "track") {
-			// v[0].srcObject = new MediaStream(new Array(event.track));
+			console.log('addRemoteVideo as track : ' + event.streams[0]);
 			v[0].srcObject = event.streams[0];
 		}
 		else {
