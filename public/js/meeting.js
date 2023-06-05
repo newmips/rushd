@@ -473,6 +473,7 @@ var Meeting = function (socketioHost) {
 
 
             _localStream.getTracks().forEach((track) => {
+                console.log(track.id);
                 _opc[participantId].addTrack(track, _localStream);
             });
         }
@@ -514,6 +515,7 @@ var Meeting = function (socketioHost) {
         
         // _apc[to].onaddstream = handleRemoteStreamAdded(to);
         // _apc[to].ontrack = handleRemoteStreamAdded(to);
+        // _apc[to].addStream(_localStream);
         if (_apc[to].addStream !== undefined) {
 
             console.log("createAnswer > Stream > _localStream" + _localStream);
@@ -528,13 +530,13 @@ var Meeting = function (socketioHost) {
             _apc[to].ontrack = handleRemoteStreamAdded(to);
             _apc[to].onremovetrack = handleRemoteStreamRemoved; 
             _localStream.getTracks().forEach((track) => {
+                console.log(track.id);
                 _apc[to].addTrack(track, _localStream);
             });
         }
           
         
 
-        // _apc[to].addStream(_localStream);
         
 
         _apc[to].setRemoteDescription(new RTCSessionDescription(sdp.snDescription), setRemoteDescriptionSuccess, setRemoteDescriptionError);

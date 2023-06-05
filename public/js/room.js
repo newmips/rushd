@@ -132,8 +132,9 @@ function addRemoteVideo(event, participantID) {
 		v[0].autoplay = true;
 		v[0].muted = true;
 		v[0].playinline = true;
-		// v[0].srcObject = event.streams[0];
+		
 		v[0].srcObject = event.stream;
+		
 	}
 }
 
