@@ -64,8 +64,8 @@ downloadButton.addEventListener('click', () => {
 var startTime;
 function startRecording() {
   recordedBlobs = [];
-  const mimeType = codecPreferences.options[codecPreferences.selectedIndex].value;
-  const options = {mimeType};
+  // const mimeType = codecPreferences.options[codecPreferences.selectedIndex].value;
+  // const options = {mimeType};
 
   try {
     const sUsrAg = navigator.userAgent;
@@ -106,7 +106,7 @@ function startRecording() {
     return;
   }
   
-  console.log('Created MediaRecorder', mediaRecorder, 'with options', options);
+  // console.log('Created MediaRecorder', mediaRecorder, 'with options', options);
   recordButton.innerHTML = '<i class="fa fa-square"></i>&nbsp;&nbsp;Stop Recording';
   downloadButton.disabled = true;
   codecPreferences.disabled = true;
