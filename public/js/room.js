@@ -131,11 +131,28 @@ function addRemoteVideo(event, participantID) {
 	if(v.length>0){
 		v[0].autoplay = true;
 		v[0].muted = true;
-		v[0].playinline = true;
+		v[0].setAttribute('webkit-playsinline', 'webkit-playsinline');
+		v[0].setAttribute('playsinline', 'playsinline');
+		v[0].controls = false;
 		
-		v[0].srcObject = event.stream;
+		v[0].srcObject = event.stream ? event.stream : new MediaStream([event.track]);
 		
 	}
+}
+
+function createVideoElement(element, url, callback)
+{
+	var element = document.createElement('video');
+	element.controls = false;
+	element.style.display = "none";
+	element.autoplay = false;
+	element.setAttribute('webkit-playsinline', 'webkit-playsinline');
+	element.setAttribute('playsinline', 'playsinline');
+	element.onloadedmetadata = function() {
+		callback();
+	};
+	element.src = url;
+	return element;
 }
 
 var a = function(participantID) {

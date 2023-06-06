@@ -600,8 +600,10 @@ var Meeting = function (socketioHost) {
 	    return function(event) {
         	console.log('Remote stream added');
 
+            console.log("addRemoteVideo with event : " + event);
             console.log(event);
 			// addRemoteVideo(event.stream, from);
+            
             addRemoteVideo(event, from);
 
 
