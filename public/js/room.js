@@ -67,6 +67,12 @@ $( document ).ready(function() {
 
 			$("#localVideo").prop('muted', true);
 
+
+			console.log(navigator.userAgent);
+			if (!navigator.userAgent.match(/iPhone/i)) {
+				$("#fullscreen").show();
+			}
+
 	    }
 	);
 	

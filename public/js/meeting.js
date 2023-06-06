@@ -172,7 +172,6 @@ var Meeting = function (socketioHost) {
             document.body.appendChild(canvas);
 
             stream = canvas.captureStream(fps);
-            console.log(stream);
             
         }
 
