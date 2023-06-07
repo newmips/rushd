@@ -61,7 +61,7 @@ const downloadButton = document.querySelector('button#download');
 }); */
 downloadButton.addEventListener('click', () => {
 
-  saveAs(new Blob(recordedBlobs, {type: "application/octet-stream ;charset=utf-8"}), 'rushd.webm')
+  saveAs(new Blob(recordedBlobs, {type: 'video/webm'}), 'rushd.webm');
 });
 
 
