@@ -42,7 +42,8 @@ const downloadButton = document.querySelector('button#download');
 downloadButton.addEventListener('click', () => {
 
   const blob = new Blob(recordedBlobs, {type: 'video/webm'});
-  const url = window.URL.createObjectURL(blob);
+  // const url = window.URL.createObjectURL(blob);
+  const url = webkitURL.createObjectURL(blob);
   
           
   const a = document.createElement('a');
