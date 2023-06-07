@@ -39,11 +39,10 @@ recordButton.addEventListener('click', () => {
 
 
 const downloadButton = document.querySelector('button#download');
-downloadButton.addEventListener('click', () => {
+/* downloadButton.addEventListener('click', () => {
 
   const blob = new Blob(recordedBlobs, {type: 'video/webm'});
-  // const url = window.URL.createObjectURL(blob);
-  const url = webkitURL.createObjectURL(blob);
+  const url = window.URL.createObjectURL(blob);
   
           
   const a = document.createElement('a');
@@ -59,8 +58,11 @@ downloadButton.addEventListener('click', () => {
   }, 100);
 
 
-});
+}); */
+downloadButton.addEventListener('click', () => {
 
+  saveAs(new Blob(recordedBlobs, {type: "application/octet-stream ;charset=utf-8"}), 'rushd.webm')
+});
 
 
 var startTime;
